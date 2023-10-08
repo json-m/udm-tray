@@ -1,0 +1,17 @@
+# it's recommended you create a user specifically for the UDM API for this application
+# scope that user to the minimum permissions required for this application to function
+
+# username to login to udm ui
+user: "apiuser"
+
+# password
+pass: "hunter2"
+
+# UDM UI Address, ie: https://192.168.1.1 - do not include a trailing slash
+host: "https://192.168.1.1"
+
+# skip ssl verification, only use this if you know what you're doing/okay with self-signed certs
+skip_insecure: false
+
+# site in unifios to use
+site: "default"
