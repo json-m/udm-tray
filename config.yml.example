@@ -13,5 +13,8 @@ host: "https://192.168.1.1"
 # skip ssl verification, only use this if you know what you're doing/okay with self-signed certs
 skip_insecure: false
 
+# timeout for requests to UDM API
+timeout: 5
+
 # site in unifios to use
 site: "default"

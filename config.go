@@ -9,11 +9,12 @@ import (
 
 // Config - some imported/exported to config file
 type Config struct {
-	User   string `yaml:"user"`
-	Pass   string `yaml:"pass"`
-	Host   string `yaml:"host"`
-	Site   string `yaml:"site"`
-	Client UDM_API.Client
+	User         string `yaml:"user"`
+	Pass         string `yaml:"pass"`
+	Host         string `yaml:"host"`
+	Site         string `yaml:"site"`
+	SkipInsecure bool   `yaml:"skip_insecure"`
+	Client       *UDM_API.Client
 }
 
 // init config
