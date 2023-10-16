@@ -2,12 +2,10 @@ module udm-tray
 
 go 1.19
 
-replace jason.lv/UDM-API => ../UDM-API
-
 require (
 	fyne.io/systray v1.10.0
+	github.com/json-m/udm-api v0.0.0-20231016020401-7e7a919772ed
 	gopkg.in/yaml.v3 v3.0.1
-	jason.lv/UDM-API v0.0.0-00010101000000-000000000000
 )
 
 require (

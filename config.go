@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/json-m/udm-api"
 	"gopkg.in/yaml.v3"
-	UDM_API "jason.lv/UDM-API"
 	"log"
 	"os"
 )
@@ -14,7 +14,7 @@ type Config struct {
 	Host         string `yaml:"host"`
 	Site         string `yaml:"site"`
 	SkipInsecure bool   `yaml:"skip_insecure"`
-	Client       *UDM_API.Client
+	Client       *udm_api.Client
 }
 
 // init config

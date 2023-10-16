@@ -4,7 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"fyne.io/systray"
-	udm "jason.lv/UDM-API"
+	"github.com/json-m/udm-api"
+	"github.com/json-m/udm-api/app/network"
 	"log"
 	"os"
 	"udm-tray/icon"
@@ -28,24 +29,24 @@ func init() {
 
 }
 
-var Routes []udm.TrafficRouteStruct
+var Routes []network.TrafficRouteStruct
 
 func main() {
 	var err error
 	l(fmt.Sprintf("Connecting to %s as %s...\n", config.Host, config.User))
 
 	// login
-	config.Client, err = udm.CreateClient(config.User, config.Pass, config.Host, 5, config.SkipInsecure)
+	config.Client, err = udm_api.CreateClient(config.User, config.Pass, config.Host, 5, config.SkipInsecure)
 	if err != nil {
 		log.Fatalf("Error creating client: %s\n", err)
 	}
 
 	// reset and update traffic rules with what is on the remote side
-	tr, err := config.Client.TrafficRouteController_GetRoutes(config.Site)
+	tr, err := network.TrafficRouteController_GetRoutes(*config.Client, config.Site)
 	if err != nil {
 		log.Fatalf("Error getting traffic rules: %s\n", err)
 	}
-	Routes = []udm.TrafficRouteStruct{}
+	Routes = []network.TrafficRouteStruct{}
 	Routes = append(Routes, tr...)
 
 	// print out traffic rules
@@ -83,7 +84,7 @@ func onReady() {
 				}
 
 				// make request to update rule
-				err := config.Client.TrafficRouteController_UpdateRoute(config.Site, r.ID, Routes[idx])
+				err := network.TrafficRouteController_UpdateRoute(*config.Client, config.Site, r.ID, Routes[idx])
 				if err != nil {
 					l(fmt.Sprintf("Error updating traffic rule: %s\n", err))
 					continue
